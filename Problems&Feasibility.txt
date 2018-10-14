@@ -1,0 +1,7 @@
+Problems
+- Understanding the data given to us by the CFC.
+- Cleansing the CFC data so that is formatted correctly for a SQL Server database, as well as for use with Shiny R.
+- Understanding what our client wants us to present to them.
+
+Feasibility Conclusion
+- In conclusion, we believe that we will be able to complete our Senior Project for the CFC, after we meet with them again to clarify some key parts of our project.
