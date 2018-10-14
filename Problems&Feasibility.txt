@@ -1,7 +1,28 @@
-Problems
+Problems:
 - Understanding the data given to us by the CFC.
 - Cleansing the CFC data so that is formatted correctly for a SQL Server database, as well as for use with Shiny R.
 - Understanding what our client wants us to present to them.
 
-Feasibility Conclusion
+Skill set:
+- Shiny - We are all familiar with Shiny, but could brush up on our skills
+- SQL Server - Not a new skill, but again, more brushing up on our skills
+- Excel - This isn't something we're incredibly skilled in, but seems easy enough to pick up
+
+Software:
+- R Studio
+- SQL Server
+- Excel
+- A mail client
+
+Hardware:
+- A computer that can run SQL Server, since this will be our heaviest piece of software
+
+Time:
+- Once we run through some issues with our client, we should be able to knock out this project in a few weeks with a few hours of work between us per week
+
+Client Access:
+- We are working on communicating more with our client and have set up an appointment to clarify issues, see if we're heading in the right direction
+
+
+Feasibility Conclusion:
 - In conclusion, we believe that we will be able to complete our Senior Project for the CFC, after we meet with them again to clarify some key parts of our project.
