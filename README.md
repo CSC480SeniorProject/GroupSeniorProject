@@ -1,6 +1,6 @@
 # GroupSeniorProject
 
-## Object of the Class
+## Objectives For the Class
 
 • Identify client preferences.
 
