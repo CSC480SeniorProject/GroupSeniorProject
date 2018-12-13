@@ -1,0 +1,164 @@
+---
+title: "Senior Project"
+output:
+  html_document:
+    df_print: paged
+---
+
+Load all the packages we need 
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(RColorBrewer)
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+library(choroplethr)
+library(choroplethrMaps)
+library(ggbeeswarm)
+library(tidyverse)
+library(lubridate)
+library(plotly)
+library(ggbeeswarm)
+
+```
+ 
+load all the data we are going to use here and do summary of each dataset.
+
+Summary statistics such as mean,median,mode and quartiles for each variable.
+ 
+```{r}
+
+
+COR_Adult_CCcontact <- read_excel("COR_Adult_CCcontact.xlsx")
+summary(COR_Adult_CCcontact) 
+
+MS_ADO_AEM <- read_excel("MS_ADO_AEM.xlsx")
+summary(MS_ADO_AEM) 
+
+MS_ADO_MCS_Alien <- read_excel("MS_ADO_MCS_Alien.xlsx")
+summary(MS_ADO_MCS_Alien) 
+
+MS_ADO_Total <- read_excel("MS_ADO_Total.xlsx")
+summary(MS_ADO_Total) 
+
+MS_ADO_QMB <- read_excel("MS_ADO_QMB.xlsx")
+summary(MS_ADO_QMB) 
+
+ESA_TANF_Child_Only <- read_excel("ESA_TANF_Child_Only.xlsx")
+summary(ESA_TANF_Child_Only)
+
+#To not see any number like "1e+05" we will penalize the scientific notation version by 999
+
+options(scipen=999)
+```
+ 
+ 
+ let's have a first look at the data using ggplot2.
+
+
+We have used Caseload as a constant element in all graphics for the x axis and we have used ActualValue, ForecastValue, and Variance for the y axis for each dataset we did load here 
+
+```{r}
+
+
+ESA_TANF_Child_Only  %>% ggplot(aes(x=Caseload,y=ActualValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")
+
+```
+
+ Use span to control the "wiggliness" of the default loess smoother.
+ The span is the fraction of points used to fit each local regression.
+ small numbers make a wigglier curve, larger numbers make a smoother curve.
+ 
+ We added a loess smoothing curve. The span of .05 is the result of trial and error to give us the degree of smoothing we wanted.
+ 
+```{r}
+
+ESA_TANF_Child_Only  %>% ggplot(aes(x=Caseload,y=ForecastValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.05)
+
+ESA_TANF_Child_Only  %>% ggplot(aes(x=Caseload,y=Variance)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.05)
+```
+
+
+
+We did use different dataset here.
+We made the graph interactive using plotly.
+
+```{r}
+
+
+spa1 =COR_Adult_CCcontact %>% ggplot(aes(x=Caseload,y=ActualValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")
+ggplotly(spa1)
+
+
+spa2 = COR_Adult_CCcontact %>% ggplot(aes(x=Caseload,y=ForecastValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.07)
+ggplotly(spa2)
+
+spa3 = COR_Adult_CCcontact %>% ggplot(aes(x=Caseload,y=Variance)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.07)
+ggplotly(spa3)
+```
+
+
+```{r}
+spb1 =MS_ADO_AEM %>% ggplot(aes(x=Caseload,y=ActualValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")
+ggplotly(spb1)
+
+spb2 =MS_ADO_AEM %>% ggplot(aes(x=Caseload,y=ForecastValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.2)
+ggplotly(spb2)
+
+spb3 =MS_ADO_AEM %>% ggplot(aes(x=Caseload,y=Variance)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.2)
+ggplotly(spb3)
+```
+
+```{r}
+spc1=MS_ADO_MCS_Alien %>% ggplot(aes(x=Caseload,y=ActualValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")
+ggplotly(spc1)
+
+spc2=MS_ADO_MCS_Alien %>% ggplot(aes(x=Caseload,y=ForecastValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.2)
+ggplotly(spc2)
+
+spc3=MS_ADO_MCS_Alien %>% ggplot(aes(x=Caseload,y=Variance)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.2)
+ggplotly(spc3)
+```
+
+```{r}
+spd1=MS_ADO_Total  %>% ggplot(aes(x=Caseload,y=ActualValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")
+ggplotly(spd1)
+
+spd2=MS_ADO_Total  %>% ggplot(aes(x=Caseload,y=ForecastValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.05)
+ggplotly(spd2)
+
+spd3=MS_ADO_Total  %>% ggplot(aes(x=Caseload,y=Variance)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.05)
+ggplotly(spd3)
+```
+
+```{r}
+spe1=MS_ADO_QMB  %>% ggplot(aes(x=Caseload,y=ActualValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")
+ggplotly(spe1)
+
+spe2=MS_ADO_QMB  %>% ggplot(aes(x=Caseload,y=ForecastValue)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.2)
+ggplotly(spe2)
+
+spe3=MS_ADO_QMB  %>% ggplot(aes(x=Caseload,y=Variance)) + geom_line() + geom_hline(yintercept = 0,color="purple")+
+  geom_smooth(method = "loess",span=.2)
+ggplotly(spe3)
+```
+
+
+
+
+
+
+
