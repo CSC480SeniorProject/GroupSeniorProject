@@ -1,0 +1,9 @@
+Insert into Agency values ('WA State Achievement Council'  , GETDATE());
+Insert into Agency values ('Medical Services'  , GETDATE());
+Insert into Agency values ('Children's Services'  , GETDATE());
+Insert into Agency values ('Common Schools'  , GETDATE());
+Insert into Agency values ('Charter Schools'  , GETDATE());
+Insert into Agency values ('Corrections'  , GETDATE());
+Insert into Agency values ('Department of Early Learning'  , GETDATE());
+Insert into Agency values ('Economic Services Administration'  , GETDATE());
+Insert into Agency values ('Long Term Care'  , GETDATE());
