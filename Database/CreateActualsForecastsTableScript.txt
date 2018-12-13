@@ -1,0 +1,28 @@
+USE [CFC_Senior_Project]
+GO
+
+/****** Object:  Table [dbo].[ActualsForecasts]    Script Date: 12/5/2018 10:26:37 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ActualsForecasts](
+	[CaseloadID] [int] NOT NULL,
+	[ActualDate] [date] NOT NULL,
+	[ActualValue] [int] NOT NULL,
+	[ForecastDate] [date] NOT NULL,
+	[ForecastValue] [int] NOT NULL,
+	[Variance] [int] NOT NULL,
+	[VariancePercentage] [decimal](3, 2) NOT NULL,
+	[AgencyID] [int] NOT NULL,
+	[CreatedDate] [date] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[ActualsForecasts] ADD  CONSTRAINT [DF_ActualsForecasts_CreatedDate]  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+
+
